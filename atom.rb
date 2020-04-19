@@ -3,7 +3,7 @@
 require "date"
 require "erb"
 require "json"
-require "rest-client"
+require "net/http"
 
 # helpers
 def format_date(date_str)
@@ -28,8 +28,8 @@ now = DateTime.now
 since = (now - 1).iso8601
 timestamp = now.iso8601
 data_url = "https://api.github.com/repos/#{repository}/issues?since=#{since}&sort=updated&state=all"
-response = RestClient.get(data_url)
-if response.code == 200
+response = Net::HTTP.get_response(URI(data_url))
+if response.is_a?(Net::HTTPSuccess)
   data = JSON.parse(response.body)
   fn = "atom/#{repository.gsub('/', '_')}.xml"
   if data.size > 0
