@@ -16,7 +16,7 @@
       opened by <a href="<%= user['html_url'] %>"><%= user['login'] %></a>
       at <%= format_date(issue['created_at']) %>
       <% if issue['body'] %>
-        <p><%= issue['body'] %></p>
+        <pre><%= issue['body'] %></pre>
       <% end %>
     </summary>
   </entry>
