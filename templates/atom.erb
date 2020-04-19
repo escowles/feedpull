@@ -11,7 +11,7 @@
     <link href="<%= issue['html_url'] %>" rel="alternate"/>
     <id><%= issue['html_url'] %></id>
     <summary type="html">
-      <img src="../images/<%= icon_for(issue['state'], issue['html_url']) %>.png"/>
+      <img src="/images/<%= icon_for(issue['state'], issue['html_url']) %>.png"/>
       <a href="<%= issue['html_url'] %>">#<%= issue['number'] %></a>
       opened by <a href="<%= user['html_url'] %>"><%= user['login'] %></a>
       at <%= format_date(issue['created_at']) %>
