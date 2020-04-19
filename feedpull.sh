@@ -4,5 +4,5 @@
 git pull
 
 for repo in `cat repos.txt`; do
-  ./atom.rb $repo
+  bundle exec ./atom.rb $repo
 done
