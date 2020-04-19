@@ -1,4 +1,4 @@
 !.keep
 *.swp
+*.DS_Store
 /atom/*
-/bundle/*
