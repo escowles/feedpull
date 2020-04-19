@@ -33,7 +33,8 @@ if response.is_a?(Net::HTTPSuccess)
   data = JSON.parse(response.body)
   fn = "atom/#{repository.gsub('/', '_')}.xml"
   if data.size > 0
-    File.open(fn, "w").do { |f| f.puts render_atom }
+    File.open(fn, "w") { |f| f.puts render_atom }
+    puts "#{repository}: #{data.size} entries"
   else
     puts "#{repository}: No Data"
   end
