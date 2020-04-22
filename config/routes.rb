@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :repos, only: [:create, :destroy]
+    resources :feeds, only: [:show]
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

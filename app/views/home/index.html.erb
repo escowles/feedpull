@@ -14,6 +14,7 @@
         <%= f.hidden_field(:repo_id, value: repo.id) %>
         <%= f.submit value: "remove" %>
         <%= link_to repo.name, github_url(repo.name) %>
+        <%= link_to "atom", user_feed_path(current_user, repo.id, format: :xml) %>
       <% end %>
     </div>
   <% end %>

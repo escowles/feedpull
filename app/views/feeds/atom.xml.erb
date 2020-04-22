@@ -1,0 +1,24 @@
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title><%= @repo.name %></title>
+  <link href="<%= github_url(@repo.name) %>/issues" rel="alternate"/>
+  <id><%= github_url(@repo.name) %>/issues</id>
+  <updated><%= @timestamp.iso8601 %></updated>
+<% @data.each do |issue| %>
+  <% user = issue['user'] %>
+  <entry>
+    <title><%= issue['title'] %></title>
+    <updated><%= format_date(issue['updated_at']) %></updated>
+    <link href="<%= issue['html_url'] %>" rel="alternate"/>
+    <id><%= issue['html_url'] %></id>
+    <summary type="html">
+      <img src="/images/<%= icon_for(issue['state'], issue['html_url']) %>.png"/>
+      <a href="<%= issue['html_url'] %>">#<%= issue['number'] %></a>
+      opened by <a href="<%= user['html_url'] %>"><%= user['login'] %></a>
+      at <%= format_date(issue['created_at']) %>
+      <% if issue['body'] %>
+        <pre><%= issue['body'] %></pre>
+      <% end %>
+    </summary>
+  </entry>
+<% end %>
+</feed>
