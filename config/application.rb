@@ -31,5 +31,8 @@ module Feedpull
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # use classic loading to avoid zeitwerk error
+    config.autoloader = :classic
   end
 end
