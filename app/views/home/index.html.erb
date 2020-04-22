@@ -5,6 +5,24 @@
   Logged in as <%= current_user.name %> |
   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
   </p>
+
+  <h3>repos:</h3>
+  <% current_user.repos.order(:name).each do |repo| %>
+    <div>
+      <%= form_for([current_user, repo], method: :delete) do |f| %>
+        <%= f.hidden_field(:user_id, value: current_user.id) %>
+        <%= f.hidden_field(:repo_id, value: repo.id) %>
+        <%= f.submit value: "remove" %>
+        <%= link_to repo.name, github_url(repo.name) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form_for([current_user, Repo.new]) do |f| %>
+    <%= f.hidden_field(:user_id, value: current_user.id) %>
+    <%= f.submit value: "add repo" %>
+    <%= f.text_field :name %>
+  <% end %>
 <% else %>
   <%= link_to "Sign in with github", user_github_omniauth_authorize_path %>
 <% end %>

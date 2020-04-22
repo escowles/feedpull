@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :repos
+
   devise :omniauthable, omniauth_providers: [:github]
 
   def self.new_with_session(params, session)
